@@ -10,10 +10,15 @@ function App() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [idade, setIdade] = useState("");
+  const [usuario, setUsuario] = useState({});
+
   function acionaRegistro(e) {
     e.preventDefault();
-
-    alert("Usuário cadastrado com sucesso!");
+    setUsuario({
+      nome: nome,
+      email: email,
+      idade: idade,
+    });
   }
 
   return (
@@ -76,11 +81,11 @@ function App() {
       </form>
       <br />
       <div>
-        <span>Bem vindo: Usuário</span>
+        <span>Bem vindo: {usuario.nome}</span>
         <br />
-        <span>E-mail: teste@teste.com</span>
+        <span>E-mail: {usuario.email}</span>
         <br />
-        <span>Idade: XX anos</span>
+        <span>Idade: {usuario.idade} anos</span>
       </div>
     </div>
   );
