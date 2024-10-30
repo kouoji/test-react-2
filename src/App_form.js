@@ -1,10 +1,7 @@
 import { useState } from "react";
 
 function App() {
-  const [tarefa, setTarefa] = useState([
-    "Cortar o baralho",
-    "Distribuir as cartas",
-  ]);
+  const [tarefa, setTarefa] = useState(["Cortar o baralho", "Distribuir as cartas"]);
   const [input, setInput] = useState("");
 
   function acionaRegistro(e) {
