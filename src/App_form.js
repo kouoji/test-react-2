@@ -2,15 +2,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 function App() {
-  const [tarefa, setTarefa] = useState(["Cortar o baralho", "Distribuir as cartas"]);
   const [input, setInput] = useState("");
-
-  useEffect(() => {
+  const [tarefa, setTarefa] = useState(() => {
     const tarefasStorage = localStorage.getItem("@tarefa");
-    if (tarefasStorage) {
-      setTarefa(JSON.parse(tarefasStorage));
-    }
-  }, [tarefa]);
+    return tarefasStorage ? JSON.parse(tarefasStorage) : ["Pagar a conta de luz", "Estudar React"];
+  });
 
   useEffect(() => {
     localStorage.setItem("@tarefa", JSON.stringify(tarefa));
@@ -18,12 +14,7 @@ function App() {
 
   function acionaRegistro(e) {
     e.preventDefault();
-    if (input === "") {
-      alert("Insira uma tarefa.");
-    } else {
-      setTarefa([...tarefa, input]);
-      setInput("");
-    }
+    setTarefa((prevTarefa) => [...prevTarefa, input]);
   }
 
   return (
@@ -47,8 +38,8 @@ function App() {
         <button type="submit">Registrar</button>
       </form>
       <ul>
-        {tarefa.map((tarefa) => (
-          <li key={tarefa}>{tarefa}</li>
+        {tarefa.map((tarefa, index) => (
+          <li key={index}>{tarefa}</li>
         ))}
       </ul>
     </div>
